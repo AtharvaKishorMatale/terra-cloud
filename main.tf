@@ -1,3 +1,20 @@
+terraform {
+  required_version = "~> 1.1"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+ region = var.region
+access_key = var.access_key
+  secret_key = var.secret_key
+}
+
 #custom vpc creation
 resource "aws_vpc" "custom_vpc" {
   cidr_block       = var.cidr_block
@@ -57,21 +74,7 @@ resource "aws_db_subnet_group" "default" {
 }
 
 
-#variables
-variable "cidr_block"{
-    default = "10.0.0.0/16"
-}
 
-variable "web-cidr_block"{
-     default = "10.0.0.0/20"
-}
-variable "app-cidr_block"{
-      default = "10.0.16.0/20"
-}
-variable "db-cidr_block"{
-     default = "10.0.32.0/20"
-
-}
 
 output "vpc_id" {
     value = aws_vpc.custom_vpc.id
