@@ -13,3 +13,9 @@ variable "db-cidr_block"{
      default = "10.0.32.0/20"
 
 }
+variable "access_key"{
+
+}
+variable "secret_key" {
+   
+}
